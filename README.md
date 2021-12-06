@@ -46,3 +46,19 @@
 - NACL's are stateless and act as the firewall to the VPC subnets.
 - Security rules only allow rules and do not deny whereas NACLs can allow and deny rules therefore can prevent certain IP addresses from accessing the subnets. 
 
+## Creating a VPC in AWS
+# App VPC
+- Step 1: Create VPC and Subnets
+- Step 2: Create Internet Gateway
+  - 2.1: Attach internet gateway with VPC
+- Step 3: Create public subnet for application
+- Step 4: Create routing table with routes and rules
+  - 4.1: Edit routes to allow IG and VPC (Select the IG created within VPC service of AWS)
+  - 4.2: Associate route table to our public subnet (Secured access to database by placing it in  a private subnet, no access to the public internet)
+Step 5: Create a security group now or create when we launch our app, port 22 from MY-IP, port 3000, port 80 HTTP
+
+# App and DB VPC
+- Create private subnet 
+- Reboot DB AMI EC2 inside private subnet
+- Modify Security group of DB so that private subnet has no internet access and only connects to app AMI, use the private subnet IP 10.0.7.0/24 for port 22 and port 27017
+- SSH into app EC2 and npm install and npm start from app folder
