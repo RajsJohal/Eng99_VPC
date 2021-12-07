@@ -1,4 +1,4 @@
-### Virtual Private Cloud
+# Virtual Private Cloud
 ![VPC image](images/vpc.PNG)
 -  A virtual network dedicated to our AWS account. Logically isolated from other virtual networks in the AWS cloud. EC2 instances can be launched into your VPC as well as other AWS resources. 
 - When you create a VPC, a range of IPv4 addresses are specified in the form of a CIDR block, e.g. 10.0.0.0/16. 
