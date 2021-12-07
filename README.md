@@ -61,5 +61,5 @@ Step 5: Create a security group now or create when we launch our app, port 22 fr
 - Create private subnet 
 - Reboot DB AMI EC2 inside private subnet
 - Modify Security group of DB so that private subnet has no internet access and only connects to app AMI, use the private subnet IP 10.0.7.0/24 for port 22 and port 27017.
-- SSH into app EC2, change the env var so that DB_HOST uses the private IP of DB subnet
+- SSH into app EC2, change the env var so that DB_HOST uses the private IP of DB subnet, located in the description page of DB_VPC AMI 
 - cd into app folder and run npm install and npm start to boot app.
