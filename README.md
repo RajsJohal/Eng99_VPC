@@ -46,8 +46,8 @@
 - NACL's are stateless and act as the firewall to the VPC subnets.
 - Security rules only allow rules and do not deny whereas NACLs can allow and deny rules therefore can prevent certain IP addresses from accessing the subnets. 
 
-## Creating a VPC in AWS
-# App VPC
+# Creating a VPC in AWS
+## App VPC
 - Step 1: Create VPC and Subnets
 - Step 2: Create Internet Gateway
   - 2.1: Attach internet gateway with VPC
@@ -57,9 +57,22 @@
   - 4.2: Associate route table to our public subnet (Secured access to database by placing it in  a private subnet, no access to the public internet)
 Step 5: Create a security group now or create when we launch our app, port 22 from MY-IP, port 3000, port 80 HTTP
 
-# App and DB VPC
+## App and DB VPC
 - Create private subnet 
 - Reboot DB AMI EC2 inside private subnet
 - Modify Security group of DB so that private subnet has no internet access and only connects to app AMI, use the private subnet IP 10.0.7.0/24 for port 22 and port 27017.
 - SSH into app EC2, change the env var so that DB_HOST uses the private IP of DB subnet, located in the description page of DB_VPC AMI 
 - cd into app folder and run npm install and npm start to boot app.
+
+## NAT Instance
+- Create a new NAT instance in the community AMI
+- The NAT instance must be placd in the public subnet where the app ami is found
+- Security Group of NAT instance must alow port 22 and ICMP on 0.0.0.0/0 to allow internet access. 
+- Apply the same security group rules to the DB instance located in the private subnet. 
+- Must configure a routing table for the private subnet to allow traffic to the NAT instance, the routing table should contain local connection and a connection to the NAT instance with an association with the private subnet. 
+- Must copy the key from our local host into the NAT instance in order to SSH into the DB instance from the NAT instance
+- SSh into NAT instance and coppy the key before we SSH into the DB instance. 
+- TO SSH INTO DB USE PRIVATE IP NOT PUBLIC IP
+- Once inside the DB instance ping a website such as www.google.com and recieve a response to indicate internet connectivity through NAT instance.
+
+![NAT image](images/NAT.PNG)
