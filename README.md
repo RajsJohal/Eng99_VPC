@@ -75,4 +75,13 @@ Step 5: Create a security group now or create when we launch our app, port 22 fr
 - TO SSH INTO DB USE PRIVATE IP NOT PUBLIC IP
 - Once inside the DB instance ping a website such as www.google.com and recieve a response to indicate internet connectivity through NAT instance.
 
+## Bastion Instance
+- Create a new public subnet Bastion and associate it with the same routing table as the public app subnet.
+- boot up a NAT instance from community AMIs.
+- Enable port 22 access only from your IP
+- Inside the DB instance allow port 22 access from the Bastion instance
+- SSH into bastion and create the key 
+- From Bastion instance SSH into DB instance using the private IP 
+- Ping a website and wit for a response
+
 ![NAT image](images/NAT.PNG)
